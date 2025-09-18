@@ -4,12 +4,12 @@ import css from './NoteForm.module.css';
 // import type { FormikHelpers } from 'formik';
 import { useId } from 'react';
 // import * as Yup from 'yup';
-import { createNote } from '@/lib/api';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 // import { NewNote } from '@/types/note';
 import { useNoteDraftStore } from '@/lib/store/noteStore';
+import { createNote } from '@/lib/api/clientApi';
 // interface NoteFormProps {
 //   onClose: () => void;
 // }

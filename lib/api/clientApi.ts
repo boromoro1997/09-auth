@@ -1,6 +1,6 @@
 import { User } from "@/types/user";
 import { nextServer } from "./api";
-import { Note } from "@/types/note";
+import { Note , NewNote} from "@/types/note";
 export type Request = {
 email: string;
 password: string;
@@ -54,4 +54,14 @@ export default async function fetchNotes(page:number,search:string="",tag?:strin
 export  async function fetchNoteById(id:string):Promise<Note> {
     const response = await nextServer.get<Note>("/notes/"+`/${id}`)
     return response.data;
+}
+export async function createNote(newNote:NewNote) {
+    const res = await nextServer.post<Note>("/notes", newNote);
+    console.log(res.data);
+    return res.data;
+}
+export async function deleteNote(id:string) {
+    const res = await nextServer.delete<Note>("/notes/"+`/${id}`);
+  console.log(res.data)
+    return res.data;
 }
