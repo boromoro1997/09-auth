@@ -11,7 +11,7 @@ import Loader from '@/components/Loader/Loader';
 import { useDebouncedCallback } from 'use-debounce';
 import { Tag } from '@/lib/constants';
 import Link from 'next/link';
-import fetchNotes from '@/lib/api/clientApi';
+import { fetchNotes } from '@/lib/api/clientApi';
 type NotesClientProps = {
   tag?: Tag;
 };

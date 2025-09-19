@@ -6,18 +6,20 @@ import { getMe, updateMe } from '@/lib/api/clientApi';
 import { useRouter } from 'next/navigation';
 import toast, { Toaster } from 'react-hot-toast';
 
-// import { useAuthStore } from '@/lib/store/authStore';
+import { useAuthStore } from '@/lib/store/authStore';
 
 const EditProfile = () => {
   const router = useRouter();
-  //   const { user } = useAuthStore();
+  const setUser = useAuthStore(state => state.setUser);
   //   const email = user?.email;
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
+  const [avatar, setAvatar] = useState('');
   useEffect(() => {
     getMe().then(user => {
       setUserName(user.username ?? '');
       setEmail(user.email ?? '');
+      setAvatar(user.avatar ?? '');
     });
   }, []);
 
@@ -29,6 +31,11 @@ const EditProfile = () => {
     try {
       event.preventDefault();
       await updateMe({ username: userName });
+      setUser({
+        username: userName,
+        email,
+        avatar,
+      });
       router.push('/profile');
     } catch (error) {
       toast.error(` happened error :${error}`);

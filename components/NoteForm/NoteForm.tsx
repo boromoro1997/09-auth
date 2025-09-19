@@ -41,9 +41,9 @@ export default function NoteForm() {
   const { mutate } = useMutation({
     mutationFn: createNote,
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['notes'] });
       router.push('/notes/filter/All');
       clearDraft();
-      queryClient.invalidateQueries({ queryKey: ['notes'] });
     },
     onError: () => {
       toast.error('This is an error! Something went wrong , try again!');

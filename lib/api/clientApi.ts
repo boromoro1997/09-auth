@@ -41,7 +41,7 @@ export const getMe = async () => {
 export const logout = async (): Promise<void> => {
   await nextServer.post('/auth/logout')
 };
-export default async function fetchNotes(page:number,search:string="",tag?:string):Promise<Response> {
+export  async function fetchNotes(page:number,search:string="",tag?:string):Promise<Response> {
     const response = await nextServer.get<Response>("/notes", {
           params: {
           search,
@@ -51,17 +51,16 @@ export default async function fetchNotes(page:number,search:string="",tag?:strin
     })
     return response.data;
 }
-export  async function fetchNoteById(id:string):Promise<Note> {
-    const response = await nextServer.get<Note>("/notes/"+`/${id}`)
-    return response.data;
-}
+
 export async function createNote(newNote:NewNote) {
     const res = await nextServer.post<Note>("/notes", newNote);
-    console.log(res.data);
     return res.data;
 }
 export async function deleteNote(id:string) {
     const res = await nextServer.delete<Note>("/notes/"+`/${id}`);
-  console.log(res.data)
     return res.data;
+}
+export async function clientFetchNoteById(id: string): Promise<Note> {
+    const response = await nextServer.get<Note>("/notes/"+`/${id}`)
+    return response.data;
 }

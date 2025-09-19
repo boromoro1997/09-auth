@@ -61,7 +61,7 @@ const SignIn = () => {
           </button>
         </div>
 
-        {error && <p className={css.error}>Error</p>}
+        {error && <p className={css.error}>{error}</p>}
       </form>
     </main>
   );
