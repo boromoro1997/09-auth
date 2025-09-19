@@ -22,10 +22,24 @@ export const getServerMe = async (): Promise<User> => {
 };
 export async function fetchNoteById(id: string): Promise<Note> {
     const cookieStore = await cookies();
-    const response = await nextServer.get<Note>("/notes/"+`/${id}`,{
+    const response = await nextServer.get<Note>("/notes/"+`${id}`,{
     headers: {
       Cookie: cookieStore.toString(),
     },
   })
+    return response.data;
+}
+export async function fetchNotes(page: number, search: string = "", tag?: string): Promise<Response> {
+    const cookieStore = await cookies();
+  const response = await nextServer.get<Response>("/notes", {
+       headers: {
+      Cookie: cookieStore.toString(),
+    },
+          params: {
+          search,
+          tag,
+          page,
+          }
+    })
     return response.data;
 }

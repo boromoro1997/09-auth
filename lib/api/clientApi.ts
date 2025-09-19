@@ -57,7 +57,7 @@ export async function createNote(newNote:NewNote) {
     return res.data;
 }
 export async function deleteNote(id:string) {
-    const res = await nextServer.delete<Note>("/notes/"+`/${id}`);
+    const res = await nextServer.delete<Note>("/notes/"+`${id}`);
     return res.data;
 }
 export async function clientFetchNoteById(id: string): Promise<Note> {
