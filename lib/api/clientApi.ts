@@ -61,6 +61,6 @@ export async function deleteNote(id:string) {
     return res.data;
 }
 export async function clientFetchNoteById(id: string): Promise<Note> {
-    const response = await nextServer.get<Note>("/notes/"+`/${id}`)
+    const response = await nextServer.get<Note>("/notes/"+`${id}`)
     return response.data;
 }
